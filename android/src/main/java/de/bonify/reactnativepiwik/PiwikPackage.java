@@ -10,10 +10,11 @@ import com.facebook.react.uimanager.ViewManager;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 
 
-public class PiwikModule extends ReactPackage {
+public class PiwikPackage implements ReactPackage {
 
 
     @Override
