@@ -1,0 +1,23 @@
+{
+  "name": "react-native-piwik",
+  "version": "0.0.1",
+  "description": "React Native adapter for Piwik native SDKs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BonifyByForteil/react-native-piwik.git"
+  },
+  "keywords": [
+    "react-native",
+    "piwik"
+  ],
+  "author": "Rui Araujo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BonifyByForteil/react-native-piwik/issues"
+  },
+  "homepage": "https://github.com/BonifyByForteil/react-native-piwik#readme"
+}
