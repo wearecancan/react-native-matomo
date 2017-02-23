@@ -1,5 +1,6 @@
 package de.bonify.reactnativepiwik;
 
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
@@ -14,12 +15,13 @@ import android.util.Log;
 import java.net.MalformedURLException;
 
 
-public class PiwikModule extends ReactContextBaseJavaModule {
+public class PiwikModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
     private static final String LOGGER_TAG = "PiwikModule";
 
     public PiwikModule(ReactApplicationContext reactContext) {
         super(reactContext);
+        reactContext.addLifecycleEventListener(this);
     }
 
     private Tracker mPiwikTracker;
@@ -76,5 +78,19 @@ public class PiwikModule extends ReactContextBaseJavaModule {
         return "Piwik";
     }
 
+    @Override
+    public void onHostResume() {
+    }
+
+    @Override
+    public void onHostPause() {
+        if (mPiwikTracker != null) {
+            mPiwikTracker.dispatch();
+        }
+    }
+
+    @Override
+    public void onHostDestroy() {
+    }
 
 }
