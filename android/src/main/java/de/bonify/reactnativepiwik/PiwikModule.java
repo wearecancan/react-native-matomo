@@ -57,7 +57,7 @@ public class PiwikModule extends ReactContextBaseJavaModule implements Lifecycle
     }
 
     @ReactMethod
-    public void trackGoal(@NonNull int goalId, Float revenue) {
+    public void trackGoal(int goalId, Float revenue) {
         if (mPiwikTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
         }

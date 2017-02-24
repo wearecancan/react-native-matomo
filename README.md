@@ -5,7 +5,7 @@ This document describes how to get started using the Piwik Tracking SDK for Reac
 [Piwik](http://piwik.org) is the leading open source web analytics platform 
 that gives you valuable insights into your website's visitors, 
 your marketing campaigns and much more, so you can optimize your strategy and experience of your visitors.
-This relies on the native [Android SDK](https://github.com/piwik/piwik-sdk-android) for Piwik and this README page is heavily inspired by it.
+This relies on the native [Android SDK](https://github.com/piwik/piwik-sdk-android) and on the native [iOS SDK ](https://github.com/piwik/piwik-sdk-ios) for Piwik and this README page is heavily inspired by it.
 
 ## Getting started
 
@@ -19,6 +19,12 @@ Integrating Piwik into your React Native app
 
 
 ###Include the library
+
+####iOS
+
+1. Add `node_modules/react-native-piwik/ios/BNFPiwik.xcodeproj` to your xcode project, usually under the `Libraries` group
+1. Add `libBNFPiwik.a` (from `Products` under `BNFPiwik.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
+
 
 ####Android
 - Open `/android/settings.gradle`
@@ -41,12 +47,29 @@ compile project(':react-native-piwik')
 
 ### Tracker Usage
 
+#### Init tracker
+
+Before using any function below, the tracker must be initialized.
+
+```javascript
+Piwik.initTracker("https://your-piwik-domain.tld/piwik.php", 1)
+```
+#### Set User ID
+
+Providing the tracker with a user ID lets you connect data collected from multiple devices and multiple browsers for the same user. A user ID is typically a non empty string such as username, email address or UUID that uniquely identifies the user. The User ID must be the same for a given user across all her devices and browsers. .
+If user ID is used, it must be persisted locally by the app and set directly on the tracker each time the app is started.
+
+If no user ID is used, the SDK will generate, manage and persist a random id for you.
+```javascript
+Piwik.setUserId("123e4567-e89b-12d3-a456-426655440000")
+```
+
 #### Track screen views
 
 To send a screen view set the screen path and titles on the tracker.
 
 ```javascript
-Piwik.trackScrenn("/your_activity", "Title")
+Piwik.trackScreen("/your_activity", "Title")
 ```
 
 #### Track events
@@ -66,6 +89,15 @@ If you want to trigger a conversion manually or track some user interaction simp
 ```javascript
 
 Piwik.trackGoal(1, revenue)
+```
+
+
+#### Track App Downloads
+
+If you want to track the app downloads, there is also a function to do that (only supported on Android).
+```javascript
+
+Piwik.trackAppDownload()
 ```
 
 

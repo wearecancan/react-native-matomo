@@ -1,6 +1,6 @@
 {
   "name": "react-native-piwik",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React Native adapter for Piwik native SDKs",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "react-native",
-    "piwik"
+    "piwik",
+    "android",
+    "ios"
   ],
   "author": "Rui Araujo",
   "license": "MIT",
