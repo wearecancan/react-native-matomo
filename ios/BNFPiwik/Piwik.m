@@ -70,19 +70,22 @@ RCT_EXPORT_METHOD(trackScreen: (NSString* _Nonnull)screen title:(NSString*) titl
     [[PiwikTracker sharedInstance] sendViews:screen, title, nil];
 }
 
-RCT_EXPORT_METHOD(trackGoal: (NSUInteger)goal revenue:(NSUInteger) revenue)
+RCT_EXPORT_METHOD(trackGoal: (NSUInteger)goal values:(NSDictionary* _Nonnull) values)
 {
 #if DEBUG
     RCTLogInfo(@"Tracking goal");
 #endif
+    NSNumber* revenue = [values objectForKey:@"revenue"];
     [[PiwikTracker sharedInstance] sendGoalWithID:goal revenue:revenue];
 }
 
-RCT_EXPORT_METHOD(trackEvent: (NSString* _Nonnull)category action:(NSString* _Nonnull) action name:(NSString*) name value:(NSNumber*)value)
+RCT_EXPORT_METHOD(trackEvent: (NSString* _Nonnull)category action:(NSString* _Nonnull) action values:(NSDictionary* _Nonnull) values)
 {
 #if DEBUG
     RCTLogInfo(@"Tracking event");
 #endif
+    NSString * name= [values objectForKey:@"name"];
+    NSNumber* value = [values objectForKey:@"value"];
     [[PiwikTracker sharedInstance] sendEventWithCategory:category action:action name:name value:value];
 }
 
