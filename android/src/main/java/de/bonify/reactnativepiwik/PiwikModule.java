@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import org.piwik.sdk.Piwik;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.TrackHelper;
@@ -49,17 +50,29 @@ public class PiwikModule extends ReactContextBaseJavaModule implements Lifecycle
     }
 
     @ReactMethod
-    public void trackEvent(@NonNull String category, @NonNull String action, String name, Float value) {
+    public void trackEvent(@NonNull String category, @NonNull String action, ReadableMap values) {
         if (mPiwikTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
+        }
+        String name = null;
+        Float value = null;
+        if (values.hasKey("name") && !values.isNull("name")) {
+            name = values.getString("name");
+        }
+        if (values.hasKey("value") && !values.isNull("value")) {
+            value = (float)values.getDouble("value");
         }
         TrackHelper.track().event(category, action).name(name).value(value).with(mPiwikTracker);
     }
 
     @ReactMethod
-    public void trackGoal(int goalId, Float revenue) {
+    public void trackGoal(int goalId, ReadableMap values) {
         if (mPiwikTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
+        }
+        Float revenue = null;
+        if (values.hasKey("revenue") && !values.isNull("revenue")) {
+            revenue = (float)values.getDouble("revenue");
         }
         TrackHelper.track().goal(goalId).revenue(revenue).with(mPiwikTracker);
     }
