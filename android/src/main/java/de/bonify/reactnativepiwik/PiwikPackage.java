@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class PiwikPackage implements ReactPackage {
 
-
-    @Override
+    // Deprecated from RN 0.47.0
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
