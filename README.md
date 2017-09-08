@@ -18,15 +18,15 @@ Integrating Piwik into your React Native app
 5. [Track screen views, goals and more](#tracker-usage).
 
 
-###Include the library
+### Include the library
 
-####iOS
+#### iOS
 
 1. Add `node_modules/react-native-piwik/ios/BNFPiwik.xcodeproj` to your xcode project, usually under the `Libraries` group
 1. Add `libBNFPiwik.a` (from `Products` under `BNFPiwik.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
 
 
-####Android
+#### Android
 - Open `/android/settings.gradle`
 - Below `include ':app'` add:
 
