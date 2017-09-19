@@ -59,7 +59,7 @@ RCT_EXPORT_METHOD(setAppOptOut:(BOOL)isOptedOut)
 #if DEBUG
     RCTLogInfo(@"Setting app opt out");
 #endif
-    [PiwikTracker sharedInstance].isOptedOut = isOptedOut;
+    [PiwikTracker sharedInstance].optOut = isOptedOut;
 }
 
 RCT_EXPORT_METHOD(setUserId:(NSString* _Nonnull)userID)
