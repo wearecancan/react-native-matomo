@@ -54,6 +54,14 @@ RCT_EXPORT_METHOD(initTracker: (NSString*)url id:(NSNumber* _Nonnull) id)
     [PiwikTracker sharedInstanceWithSiteID:[id stringValue] baseURL:[NSURL URLWithString: url]];
 }
 
+RCT_EXPORT_METHOD(setAppOptOut:(BOOL)isOptedOut)
+{
+#if DEBUG
+    RCTLogInfo(@"Setting app opt out");
+#endif
+    [PiwikTracker sharedInstance].optOut = isOptedOut;
+}
+
 RCT_EXPORT_METHOD(setUserId:(NSString* _Nonnull)userID)
 {
 #if DEBUG

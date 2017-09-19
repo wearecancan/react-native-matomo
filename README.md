@@ -101,6 +101,13 @@ If you want to track the app downloads, there is also a function to do that (onl
 Piwik.trackAppDownload()
 ```
 
+#### Setting App Opt Out
+
+The PiwikTracker SDK supports opting out of tracking. Note that this flag must be set each time the app starts up and will default to false. To set the app-level opt out, use:
+```javascript
+
+Piwik.setAppOptOut(true);
+```
 
 ## Contribute
 
