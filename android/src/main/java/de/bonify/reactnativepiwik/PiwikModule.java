@@ -37,6 +37,11 @@ public class PiwikModule extends ReactContextBaseJavaModule implements Lifecycle
     }
 
     @ReactMethod
+    public void setAppOptOut(Boolean isOptedOut) {
+        mPiwikTracker.setAppOptOut(isOptedOut);
+    }
+
+    @ReactMethod
     public void setUserId(String userId) {
         mPiwikTracker.setUserId(userId);
     }
