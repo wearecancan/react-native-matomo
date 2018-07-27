@@ -1,17 +1,17 @@
-# Piwik SDK for React Native
+# Matomo SDK for React Native
 
-This document describes how to get started using the Piwik Tracking SDK for React Native.
-[Piwik](http://piwik.org) is the leading open source web analytics platform
+This document describes how to get started using the Matomo Tracking SDK for React Native.
+[Matomo](https://matomo.org/) is the leading open source web analytics platform
 that gives you valuable insights into your website's visitors,
 your marketing campaigns and much more, so you can optimize your strategy and experience of your visitors.
-This relies on the native [Android SDK](https://github.com/piwik/piwik-sdk-android) and on the native [iOS SDK ](https://github.com/piwik/piwik-sdk-ios) for Piwik and this README page is heavily inspired by it.
+This relies on the native [Android SDK](https://github.com/piwik/piwik-sdk-android) and on the native [iOS SDK ](https://github.com/piwik/piwik-sdk-ios) for Matomo and this README page is heavily inspired by it.
 
 ## Getting started
 
-Integrating Piwik into your React Native app
+Integrating Matomo into your React Native app
 
-1.  [Install Piwik](http://piwik.org/docs/installation/)
-2.  [Create a new website in the Piwik web interface](http://piwik.org/docs/manage-websites/). Copy the Website ID from "Settings > Websites".
+1.  [Install Matomo](https://matomo.org/docs/installation/)
+2.  [Create a new website in the Matomo web interface](https://matomo.org/docs/manage-websites/). Copy the Website ID from "Settings > Websites".
 3.  [Include the library](#include-library)
 4.  [Initialize Tracker](#initialize-tracker).
 5.  [Track screen views, goals and more](#tracker-usage).
@@ -20,9 +20,9 @@ Integrating Piwik into your React Native app
 
 #### iOS
 
-1.  Add `node_modules/react-native-piwik/ios/BNFPiwik.xcodeproj` to your xcode project, usually under the `Libraries` group
+1.  Add `node_modules/react-native-matomo/ios/BNFPiwik.xcodeproj` to your xcode project, usually under the `Libraries` group
 2.  Add `libBNFPiwik.a` (from `Products` under `BNFPiwik.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
-3.  Drag `node_modules/react-native-piwik/ios/PiwikTracker/piwiktracker.xcdatamodeld` into the folder containing `AppDelegate.m`
+3.  Drag `node_modules/react-native-matomo/ios/PiwikTracker/piwiktracker.xcdatamodeld` into the folder containing `AppDelegate.m`
 4.  Delete `piwiktracker.xcdatamodeld`(from `Libraries` under `BNFPiwik.xcodeproj/PiwikTracker`)
 
 #### Android
@@ -31,15 +31,15 @@ Integrating Piwik into your React Native app
 - Below `include ':app'` add:
 
 ```
-include ':react-native-piwik'
-project(':react-native-piwik').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-piwik/android/')
+include ':react-native-matomo'
+project(':react-native-matomo').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-matomo/android/')
 ```
 
 - Open `android/app/build.gradle`
 - Add the following under `dependencies`:
 
 ```
-compile project(':react-native-piwik')
+compile project(':react-native-matomo')
 ```
 
 - Open your `MainApplication.java` file under `android/src`
