@@ -1,62 +1,56 @@
-package de.bonify.reactnativepiwik;
+package de.bonify.reactnativematomo;
 
 import com.facebook.react.bridge.LifecycleEventListener;
-import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
-import org.piwik.sdk.Piwik;
-import org.piwik.sdk.Tracker;
-import org.piwik.sdk.TrackHelper;
+import org.matomo.sdk.Matomo;
+import org.matomo.sdk.Tracker;
+import org.matomo.sdk.TrackerBuilder;
+import org.matomo.sdk.extra.TrackHelper;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import java.net.MalformedURLException;
 
 
-public class PiwikModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
+public class MatomoModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
-    private static final String LOGGER_TAG = "PiwikModule";
+    private static final String LOGGER_TAG = "MatomoModule";
 
-    public PiwikModule(ReactApplicationContext reactContext) {
+    public MatomoModule(ReactApplicationContext reactContext) {
         super(reactContext);
         reactContext.addLifecycleEventListener(this);
     }
 
-    private Tracker mPiwikTracker;
+    private Matomo matomo;
+    private Tracker mMatomoTracker;
 
     @ReactMethod
     public void initTracker(String url, int id) {
-        try {
-            mPiwikTracker = Piwik.getInstance(getReactApplicationContext()).newTracker(url, id);
-        } catch (MalformedURLException e) {
-            Log.w(LOGGER_TAG, "url is malformed", e);
-        }
+        TrackerBuilder builder = TrackerBuilder.createDefault(url, id);
+        mMatomoTracker = builder.build(Matomo.getInstance(getReactApplicationContext()));
     }
 
     @ReactMethod
     public void setAppOptOut(Boolean isOptedOut) {
-        Piwik.getInstance(getReactApplicationContext()).setOptOut(isOptedOut);
+        mMatomoTracker.setOptOut(isOptedOut);
     }
 
     @ReactMethod
     public void setUserId(String userId) {
-        mPiwikTracker.setUserId(userId);
+        mMatomoTracker.setUserId(userId);
     }
 
     @ReactMethod
     public void trackScreen(@NonNull String screen, String title) {
-        if (mPiwikTracker == null) {
+        if (mMatomoTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
         }
-        TrackHelper.track().screen(screen).title(title).with(mPiwikTracker);
+        TrackHelper.track().screen(screen).title(title).with(mMatomoTracker);
     }
 
     @ReactMethod
     public void trackEvent(@NonNull String category, @NonNull String action, ReadableMap values) {
-        if (mPiwikTracker == null) {
+        if (mMatomoTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
         }
         String name = null;
@@ -67,33 +61,33 @@ public class PiwikModule extends ReactContextBaseJavaModule implements Lifecycle
         if (values.hasKey("value") && !values.isNull("value")) {
             value = (float)values.getDouble("value");
         }
-        TrackHelper.track().event(category, action).name(name).value(value).with(mPiwikTracker);
+        TrackHelper.track().event(category, action).name(name).value(value).with(mMatomoTracker);
     }
 
     @ReactMethod
     public void trackGoal(int goalId, ReadableMap values) {
-        if (mPiwikTracker == null) {
+        if (mMatomoTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
         }
         Float revenue = null;
         if (values.hasKey("revenue") && !values.isNull("revenue")) {
             revenue = (float)values.getDouble("revenue");
         }
-        TrackHelper.track().goal(goalId).revenue(revenue).with(mPiwikTracker);
+        TrackHelper.track().goal(goalId).revenue(revenue).with(mMatomoTracker);
     }
 
 
     @ReactMethod
     public void trackAppDownload() {
-        if (mPiwikTracker == null) {
+        if (mMatomoTracker == null) {
             throw new RuntimeException("Tracker must be initialized before usage");
         }
-        TrackHelper.track().download().with(mPiwikTracker);
+        TrackHelper.track().download().with(mMatomoTracker);
     }
 
     @Override
     public String getName() {
-        return "Piwik";
+        return "Matomo";
     }
 
     @Override
@@ -102,8 +96,8 @@ public class PiwikModule extends ReactContextBaseJavaModule implements Lifecycle
 
     @Override
     public void onHostPause() {
-        if (mPiwikTracker != null) {
-            mPiwikTracker.dispatch();
+        if (mMatomoTracker != null) {
+            mMatomoTracker.dispatch();
         }
     }
 
