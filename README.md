@@ -4,7 +4,7 @@ This document describes how to get started using the Matomo Tracking SDK for Rea
 [Matomo](https://matomo.org/) is the leading open source web analytics platform
 that gives you valuable insights into your website's visitors,
 your marketing campaigns and much more, so you can optimize your strategy and experience of your visitors.
-This relies on the native [Android SDK](https://github.com/piwik/piwik-sdk-android) and on the native [iOS SDK ](https://github.com/piwik/piwik-sdk-ios) for Matomo and this README page is heavily inspired by it.
+This relies on the native [Android SDK](https://github.com/matomo-org/matomo-sdk-android) and on the native [iOS SDK ](https://github.com/matomo-org/matomo-sdk-ios) for Matomo and this README page is heavily inspired by it.
 
 ## Getting started
 
@@ -20,10 +20,8 @@ Integrating Matomo into your React Native app
 
 #### iOS
 
-1.  Add `node_modules/react-native-matomo/ios/BNFPiwik.xcodeproj` to your xcode project, usually under the `Libraries` group
-2.  Add `libBNFPiwik.a` (from `Products` under `BNFPiwik.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
-3.  Drag `node_modules/react-native-matomo/ios/PiwikTracker/piwiktracker.xcdatamodeld` into the folder containing `AppDelegate.m`
-4.  Delete `piwiktracker.xcdatamodeld`(from `Libraries` under `BNFPiwik.xcodeproj/PiwikTracker`)
+1.  Add `node_modules/react-native-matomo/ios/BNFMatomo.xcodeproj` to your xcode project, usually under the `Libraries` group
+2.  Add `libBNFMatomo.a` (from `Products` under `BNFMatomo.xcodeproj`) to build target's `Linked Frameworks and Libraries` list
 
 #### Android
 
@@ -43,8 +41,8 @@ compile project(':react-native-matomo')
 ```
 
 - Open your `MainApplication.java` file under `android/src`
-- Import the lib using `import de.bonify.reactnativepiwik.PiwikPackage;`
-- Add the following `new PiwikPackage()` to the `getPackages` function.
+- Import the lib using `import de.bonify.reactnativematomo.MatomoPackage;`
+- Add the following `new MatomoPackage()` to the `getPackages` function.
 
 ### Tracker Usage
 
@@ -53,7 +51,7 @@ compile project(':react-native-matomo')
 Before using any function below, the tracker must be initialized.
 
 ```javascript
-Piwik.initTracker('https://your-piwik-domain.tld/piwik.php', 1);
+Matomo.initTracker('https://your-matomo-domain.tld/piwik.php', 1);
 ```
 
 #### Set User ID
@@ -64,7 +62,7 @@ If user ID is used, it must be persisted locally by the app and set directly on 
 If no user ID is used, the SDK will generate, manage and persist a random id for you.
 
 ```javascript
-Piwik.setUserId('123e4567-e89b-12d3-a456-426655440000');
+Matomo.setUserId('123e4567-e89b-12d3-a456-426655440000');
 ```
 
 #### Track screen views
@@ -72,7 +70,7 @@ Piwik.setUserId('123e4567-e89b-12d3-a456-426655440000');
 To send a screen view set the screen path and titles on the tracker.
 
 ```javascript
-Piwik.trackScreen('/your_activity', 'Title');
+Matomo.trackScreen('/your_activity', 'Title');
 ```
 
 #### Track events
@@ -81,15 +79,15 @@ To collect data about user's interaction with interactive components of your app
 use trackEvent.
 
 ```javascript
-Piwik.trackEvent('category', 'action', 'label', 1000);
+Matomo.trackEvent('category', 'action', 'label', 1000);
 ```
 
 #### Track goals
 
-If you want to trigger a conversion manually or track some user interaction simply call the method trackGoal. Read more about what is a [Goal in Piwik](http://piwik.org/docs/tracking-goals-web-analytics/).
+If you want to trigger a conversion manually or track some user interaction simply call the method trackGoal. Read more about what is a [Goal in Matomo](http://matomo.org/docs/tracking-goals-web-analytics/).
 
 ```javascript
-Piwik.trackGoal(1, revenue);
+Matomo.trackGoal(1, revenue);
 ```
 
 #### Track App Downloads
@@ -97,15 +95,15 @@ Piwik.trackGoal(1, revenue);
 If you want to track the app downloads, there is also a function to do that (only supported on Android).
 
 ```javascript
-Piwik.trackAppDownload();
+Matomo.trackAppDownload();
 ```
 
 #### Setting App Opt Out
 
-The PiwikTracker SDK supports opting out of tracking. Note that this flag must be set each time the app starts up and will default to false. To set the app-level opt out, use:
+The MatomoTracker SDK supports opting out of tracking. Note that this flag must be set each time the app starts up and will default to false. To set the app-level opt out, use:
 
 ```javascript
-Piwik.setAppOptOut(true);
+Matomo.setAppOptOut(true);
 ```
 
 ## Contribute
@@ -116,4 +114,4 @@ Piwik.setAppOptOut(true);
 
 ## License
 
-react-native-piwik is released under the MIT license, see [LICENSE](https://github.com/BonifyByForteil/react-native-piwik/blob/master/LICENSE).
+react-native-matomo is released under the MIT license, see [LICENSE](https://github.com/BonifyByForteil/react-native-matomo/blob/master/LICENSE).
