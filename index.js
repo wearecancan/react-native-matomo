@@ -7,11 +7,8 @@ module.exports = {
     }
   },
   trackAppDownload: Matomo.trackAppDownload,
-  trackView: function(view, url) {
-    Matomo.trackView(
-      view.constructor === Array ? view : [view],
-      url
-    );
+  trackScreen: function(path, title) {
+    Matomo.trackScreen(path, title);
   },
   trackGoal: function(goalId, revenue) {
     Matomo.trackGoal(goalId, {revenue});
