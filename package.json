@@ -1,6 +1,6 @@
 {
   "name": "react-native-matomo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native adapter for Matomo native SDKs",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "android",
     "ios"
   ],
-  "author": "Pietro Santececca",
+  "author": "Bonify",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BonifyByForteil/react-native-matomo/issues"
