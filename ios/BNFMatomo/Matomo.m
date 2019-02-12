@@ -54,14 +54,14 @@ RCT_EXPORT_METHOD(setUserId:(NSString* _Nonnull)userID)
     }
 }
 
-RCT_EXPORT_METHOD(trackView: (NSArray<NSString *> * _Nonnull)view url:(NSString* _Nullable) url)
+RCT_EXPORT_METHOD(trackScreen: (NSString* _Nonnull)path title: (NSString* _Nullable)title)
 {
 #if DEBUG
     RCTLogInfo(@"Tracking screen");
 #endif
     if (tracker != nil) {
-        NSURL* nsUrl = url != nil ? [NSURL URLWithString: url] : nil;
-        [tracker trackWithView:view url:nsUrl];
+        NSArray* views = [path componentsSeparatedByString:@"/"];
+        [tracker trackWithView:views url:nil];
     }
 }
 
@@ -128,7 +128,7 @@ RCT_EXPORT_METHOD(trackContentInteraction:(NSString* _Nonnull)name values:(NSDic
 RCT_EXPORT_METHOD(trackSearch:(NSString* _Nonnull)query values:(NSDictionary* _Nonnull) values)
 {
 #if DEBUG
-    RCTLogInfo(@"Tracking content interaction");
+    RCTLogInfo(@"Tracking search");
 #endif
     if (tracker != nil) {
         NSString * category = [values objectForKey:@"category"];

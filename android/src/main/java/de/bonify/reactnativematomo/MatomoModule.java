@@ -76,6 +76,17 @@ public class MatomoModule extends ReactContextBaseJavaModule implements Lifecycl
         TrackHelper.track().goal(goalId).revenue(revenue).with(mMatomoTracker);
     }
 
+    @ReactMethod
+    public void trackCampaign(String name, String keyboard) {}
+
+    @ReactMethod
+    public void trackContentImpression(@NonNull String name, @NonNull ReadableMap values) {}
+
+    @ReactMethod
+    public void trackContentInteraction(@NonNull String name, @NonNull ReadableMap values) {}
+
+    @ReactMethod
+    public void trackSearch(@NonNull String query, @NonNull ReadableMap values) {}
 
     @ReactMethod
     public void trackAppDownload() {
@@ -91,8 +102,7 @@ public class MatomoModule extends ReactContextBaseJavaModule implements Lifecycl
     }
 
     @Override
-    public void onHostResume() {
-    }
+    public void onHostResume() {}
 
     @Override
     public void onHostPause() {
@@ -102,7 +112,6 @@ public class MatomoModule extends ReactContextBaseJavaModule implements Lifecycl
     }
 
     @Override
-    public void onHostDestroy() {
-    }
+    public void onHostDestroy() {}
 
 }
