@@ -60,7 +60,11 @@ RCT_EXPORT_METHOD(setCustomDimension: (NSInteger* _Nonnull)index value: (NSStrin
     RCTLogInfo(@"Setting dimension");
 #endif
     if (tracker != nil) {
-        [tracker setDimension:value forIndex:index];
+        if(value == nil){
+            [tracker removeWithDimensionAtIndex:index];
+        } else {
+            [tracker setDimension:value forIndex:index];
+        }
     }
 }
 
