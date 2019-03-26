@@ -54,6 +54,16 @@ RCT_EXPORT_METHOD(setUserId:(NSString* _Nonnull)userID)
     }
 }
 
+RCT_EXPORT_METHOD(setCustomDimension: (NSInteger* _Nonnull)index value: (NSString* _Nullable)value)
+{
+#if DEBUG
+    RCTLogInfo(@"Setting dimension");
+#endif
+    if (tracker != nil) {
+        [tracker setDimension:value forIndex:index];
+    }
+}
+
 RCT_EXPORT_METHOD(trackScreen: (NSString* _Nonnull)path title: (NSString* _Nullable)title)
 {
 #if DEBUG
