@@ -67,6 +67,23 @@ If no user ID is used, the SDK will generate, manage and persist a random id for
 Matomo.setUserId('123e4567-e89b-12d3-a456-426655440000');
 ```
 
+#### Custom Dimensions
+
+The Matomo SDK currently supports Custom Dimensions for the Visit Scope. Using Custom Dimensions you can add properties to the whole visit, such as "Did the user finish the tutorial?", "Is the user a paying user?" or "Which version of the Application is being used?" and such. Before sending custom dimensions please make sure Custom Dimensions are [properly installed and documented](https://matomo.org/docs/custom-dimensions/). You will need the ID of your configured Dimension.
+
+After that you can set a new Dimension,
+
+```javascript
+Matomo.setCustomDimension(1, 'abc');
+```
+
+or remove an already set dimension.
+
+```javascript
+Matomo.setCustomDimension(1, null);
+```
+Dimensions in the Visit Scope will be sent along every Page View or Event. Custom Dimensions are not persisted by the SDK and have to be re-configured upon application startup.
+
 #### Track screen views
 
 To send a screen view set the screen path and titles on the tracker.
