@@ -3,7 +3,7 @@
 //
 
 #import "Matomo.h"
-#import "BNFMatomo-Swift.h"
+#include "MatomoTracker.h"
 
 #if DEBUG
 #if __has_include(<React/RCTLog.h>)
@@ -114,7 +114,7 @@ RCT_EXPORT_METHOD(trackCampaign:(NSString* _Nullable)name keyboard:(NSString* _N
     }
 }
 
-RCT_EXPORT_METHOD(trackContentImpression:(NSString* _Nonnull)name values:(NSDictionary* _Nonnull)values)
+RCT_EXPORT_METHOD(trackContentImpression: (NSString* _Nonnull)name values:(NSDictionary* _Nonnull)values)
 {
 #if DEBUG
     RCTLogInfo(@"Tracking content impression");
