@@ -20,6 +20,11 @@ Integrating Matomo into your React Native app
 
 #### iOS
 
+#### iOS (with cocoapods)
+`pod 'BNFMatomo', :podspec => '../node_modules/react-native-matomo/BNFMatomo.podspec'`
+
+#### iOS (Manual)
+
 1.  Add `node_modules/react-native-matomo/ios/BNFMatomo.xcodeproj` to your xcode project, usually under the `Libraries` group
 2.  Add `libBNFMatomo.a` (from `Products` under `BNFMatomo.xcodeproj`) to build target's `Linked Frameworks and Libraries` and `Target Dependencies` lists
 3. If the MatomoTracker is the first Swift library in your project you need to add a random .swift file to your project
