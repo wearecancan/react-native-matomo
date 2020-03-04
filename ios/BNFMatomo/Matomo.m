@@ -3,7 +3,7 @@
 //
 
 #import "Matomo.h"
-#include "MatomoTracker.h"
+#import "BNFMatomo-Swift.h"
 
 #if DEBUG
 #if __has_include(<React/RCTLog.h>)
@@ -22,7 +22,7 @@
 
 static NSString * const MatamoAppTrackingKey = @"@@Matamo-tracking-version@@";
 
-+ (NSString *)appTrackId {
++(NSString *)appTrackId {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -30,7 +30,7 @@ static NSString * const MatamoAppTrackingKey = @"@@Matamo-tracking-version@@";
     return [NSString stringWithFormat:@"%@-%@-(%@)", appDisplayName, majorVersion, minorVersion];
 }
 
-+ (float)appVersion {
++(float)appVersion {
     return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
 
