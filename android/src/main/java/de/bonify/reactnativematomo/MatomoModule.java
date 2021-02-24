@@ -9,8 +9,8 @@ import org.matomo.sdk.Matomo;
 import org.matomo.sdk.Tracker;
 import org.matomo.sdk.TrackerBuilder;
 import org.matomo.sdk.extra.TrackHelper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class MatomoModule extends ReactContextBaseJavaModule implements Lifecycl
     }
 
     @ReactMethod
-    public void setCustomDimension(@NonNull int id, @Nullable String value){
+    public void setCustomDimension(int id, @Nullable String value){
         if(value == null || value.length() == 0) {
             customDimensions.remove(id);
             return;

@@ -12,11 +12,28 @@ Integrating Matomo into your React Native app
 
 1.  [Install Matomo](https://matomo.org/docs/installation/)
 2.  [Create a new website in the Matomo web interface](https://matomo.org/docs/manage-websites/). Copy the Website ID from "Settings > Websites".
-3.  [Include the library](#include-library)
-4.  [Initialize Tracker](#initialize-tracker).
+3.  [Include the library](#include-the-library)
+4.  [Initialize Tracker](#init-tracker).
 5.  [Track screen views, goals and more](#tracker-usage).
 
 ### Include the library
+
+1. Link this repo in your `package.json` file.
+
+2. Create a `react-native-config.js` file and disable autolinking by adding this
+
+```javascript
+module.exports = {
+  dependencies: {
+    'react-native-matomo': {
+      platforms: {
+        ios: null, // this will disable autolinking for this package on iOS
+      },
+    },
+  },
+};
+
+```
 
 #### iOS
 
@@ -120,6 +137,14 @@ If you want to track the app downloads, there is also a function to do that (onl
 
 ```javascript
 Matomo.trackAppDownload();
+```
+
+#### Setting App Opt Out
+
+The MatomoTracker SDK supports opting out of tracking. Note that this flag must be et each time the app starts up and will default to false. To set the app-level opt ut, use:
+
+```javascript
+Matomo.setAppOptOut(true);
 ```
 
 ## Contribute

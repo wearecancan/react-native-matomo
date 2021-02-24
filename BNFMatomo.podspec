@@ -12,6 +12,10 @@ Pod::Spec.new do |s|
   s.source        = { :git => 'https://github.com/BonifyByForteil/react-native-matomo.git' }
   s.platform      = :ios, '9.0'
   s.source_files  = "ios/{BNFMatomo,MatomoTracker}/**/*.{m,h,swift}"
+  s.requires_arc = true
   s.static_framework = true
   s.swift_version = '4.2'
+
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+  s.dependency "React"
 end
