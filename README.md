@@ -20,6 +20,8 @@ Integrating Matomo into your React Native app
 
 1. Link this repo in your `package.json` file.
 
+`"react-native-matomo": "https://github.com/selfapy/react-native-matomo"`
+
 2. Create a `react-native-config.js` file and disable autolinking by adding this
 
 ```javascript
