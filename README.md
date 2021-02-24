@@ -15,6 +15,7 @@ Integrating Matomo into your React Native app
 3.  [Include the library](#include-the-library)
 4.  [Initialize Tracker](#init-tracker).
 5.  [Track screen views, goals and more](#tracker-usage).
+6.  [Mocking](#mocking).
 
 ### Include the library
 
@@ -148,6 +149,18 @@ The MatomoTracker SDK supports opting out of tracking. Note that this flag must 
 ```javascript
 Matomo.setAppOptOut(true);
 ```
+
+### Mocking
+
+Add this line in your jest `setupFiles` configuration option from `package.json`
+
+```
+  "setupFiles": [
+    ...
+    "./node_modules/react-native-matomo/jest.setup.js"
+  ],
+```
+
 
 ## Contribute
 
