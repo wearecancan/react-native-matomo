@@ -64,7 +64,7 @@ project(':react-native-matomo').projectDir = new File(rootProject.projectDir, '.
 - Add the following under `dependencies`:
 
 ```
-compile project(':react-native-matomo')
+implementation project(":react-native-matomo")
 ```
 
 - Open your `MainApplication.java` file under `android/src`
