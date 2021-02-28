@@ -12,8 +12,8 @@ Integrating Matomo into your React Native app
 
 1.  [Install Matomo](https://matomo.org/docs/installation/)
 2.  [Create a new website in the Matomo web interface](https://matomo.org/docs/manage-websites/). Copy the Website ID from "Settings > Websites".
-3.  [Include the library](#include-library)
-4.  [Initialize Tracker](#initialize-tracker).
+3.  [Include the library](#include-the-library)
+4.  [Initialize Tracker](#init-tracker).
 5.  [Track screen views, goals and more](#tracker-usage).
 
 ### Include the library
