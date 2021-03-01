@@ -144,7 +144,7 @@ Matomo.trackAppDownload();
 
 #### Setting App Opt Out
 
-The MatomoTracker SDK supports opting out of tracking. Note that this flag must be et each time the app starts up and will default to false. To set the app-level opt ut, use:
+The MatomoTracker SDK supports opting out of tracking. Note that this flag must be set each time the app starts up and will default to false. To set the app-level opt out, use:
 
 ```javascript
 Matomo.setAppOptOut(true);
