@@ -9,6 +9,7 @@ import org.matomo.sdk.Matomo;
 import org.matomo.sdk.Tracker;
 import org.matomo.sdk.TrackerBuilder;
 import org.matomo.sdk.extra.TrackHelper;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
